@@ -7,16 +7,28 @@ function getMovies(request , response){
   
     let linkMovie = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}`
   
-    axios.get(linkMovie).then(element => {
-      let movie = element.data.results.map(inf => {
-        return new Movie(inf)
-      })
-      response.send(movie)
-    })
-    .catch(ERROR => {response.send(ERROR)})
+    if(cacheMemory[city] !== undefined){
+      console.log('the cashe contain data')
+      console.log(cacheMemory);
+      response.send(cacheMemory[city]);
+    }else{
+      console.log('cache memory is empty hit the api')
+      try{
+        axios.get(linkMovie).then(element => {
+          let movie = element.data.results.map(inf => {
+            return new Movie(inf)
+          })
+          cacheMemory[city] = movie;
+          response.send(movie)
+        })
+      }
+        catch (error) {
+          console.log('error from axios', error)
+          res.send(error)
+      }
+    }
   
   }
-
 
 
 class Movie{
