@@ -38,7 +38,7 @@ class Movie{
       this.overview = data.overview;
       this.vote_average = data.vote_average;
       this.vote_count = data.vote_count;
-      this.poster_path= data.poster_path;
+      this.poster_path= data.poster_path ? 'https://image.tmdb.org/t/p/w500' + data.poster_path: "https://i.ytimg.com/vi/L1tx-wAI6Nw/maxresdefault.jpg";
       this.popularity = data.popularity;
       this.release_date = data.release_date;
     }
