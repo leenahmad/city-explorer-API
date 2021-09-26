@@ -1,11 +1,11 @@
 const axios = require("axios");
-
+let cacheMemory = {};
 function getWeather(request, response) {
   let { city } = request.query;
   console.log(request.query);
 
   let linkWeather = `http://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${process.env.WEATHER_API_KEY}`;
-
+// let cacheMemory = {};
   if (cacheMemory[city] !== undefined) {
     console.log("the cashe contain data ");
     console.log(cacheMemory);

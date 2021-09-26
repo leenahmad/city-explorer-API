@@ -1,12 +1,12 @@
 const axios = require('axios');
 
-
+let cacheMemory = {};
 function getMovies(request , response){
   console.log(request.query);
     let { city }= request.query;
   
     let linkMovie = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}`
-  
+    // let cacheMemory = {};
     if(cacheMemory[city] !== undefined){
       console.log('the cashe contain data')
       console.log(cacheMemory);

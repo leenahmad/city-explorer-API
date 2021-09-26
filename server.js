@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 
-const axios = require("axios");
+// const axios = require("axios");
 
 
 const getMovies = require("./modules/movies");
